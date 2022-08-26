@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    --bg-color: #000;
+    --secondary-color: #080F1F;
+    --default-font: 'Montserrat';
+}
+
+input {
+    height: 35px;
+    width: 250px;
+    border: 1px solid var(--bg-color);
+    border-radius: 5px;
+    background-color: #1F2029;
+    color: #FFFFFF;
+    font-family: var(--default-font);
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: #B3B5C6;
+}
+
+input {
+    padding-left: .5rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
