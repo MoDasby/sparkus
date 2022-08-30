@@ -106,18 +106,8 @@
     opacity: .5;
 }
 
-.search-input {
-    height: 40px;
-    width: 350px;
-    margin: 1rem;
-}
-
 @media (max-width: 999px) {
     .mobile-menu {
         display: block;
-    }
-
-    .search-input {
-        display: none;
     }
 }

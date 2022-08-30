@@ -1,19 +1,17 @@
 import './style.css';
+import SearchInput from "../SearchInput";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
 
     return (
         <nav className="navbar">
 
-            <h2>
+            <Link to="/">
                 Sparkus
-            </h2>
+            </Link>
 
-            <input
-                type="text"
-                className="search-input"
-                placeholder="Pesquisar"
-            />
+            <SearchInput />
 
             <a href="/search" className="mobile-menu">
                 <i className="uil uil-search"></i>
