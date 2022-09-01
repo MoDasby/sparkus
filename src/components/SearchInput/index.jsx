@@ -1,9 +1,6 @@
 import './style.css';
-import {Navigate} from "react-router-dom";
 
 export const SearchInput = () => {
-    const isDesktop = window.innerWidth >= 768;
-
     return (
         <div className="container">
             <i className="uil uil-angle-left-b"></i>
@@ -11,8 +8,6 @@ export const SearchInput = () => {
                 className="search-input"
                 placeholder="Procurar"
             />
-
-            {isDesktop && <Navigate to="/" />}
         </div>
     )
 }

@@ -6,6 +6,10 @@
     --default-font: 'Montserrat';
 }
 
+body {
+    background-color: var(--bg-color);
+}
+
 input {
     height: 35px;
     width: 250px;
