@@ -4,10 +4,7 @@
     margin: 1rem;
 }
 
-
-.search-input__mobile {
-    height: 50px;
-    width: 100vw;
-    margin-top: 150px;
-    position: absolute;
+.container i {
+    display: none;
 }
+

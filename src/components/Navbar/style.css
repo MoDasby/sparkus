@@ -1,65 +1,35 @@
 .navbar {
-    height: 10vh;
     width: 100vw;
-    position: fixed;
+    height: 10vh;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--bg-color);
-    color: #FFF;
+    color: #FFFFFF;
     font-family: var(--default-font);
+}
+
+.navbar h2 {
     font-size: 1.5rem;
-    padding-top: .5rem;
+    letter-spacing: 2px;
+    cursor: pointer;
 }
 
 .mobile-menu {
     display: none;
 }
 
-.navbar h2 {
-    font-size: 1.5rem;
-    width: 20%;
-    letter-spacing: 2px;
-    cursor: pointer;
-}
-
-.profile-container {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-around;
-    height: 100%;
-    width: 20%;
-    text-align: center;
-    padding-left: 1rem;
-}
-
-.profile-username:hover, .profile-name:hover{
-    text-decoration: underline;
-}
-
-.profile-picture {
+.profile-container img {
+    margin: 1rem;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.profile-name {
-    height: 20%;
-    font-size: .8rem;
-    line-height: 1rem;
-    white-space: nowrap;
-    padding-right: 1rem;
-}
-
-.profile-username {
-    font-size: .8rem;
-    margin-bottom: 1rem;
-    line-height: 1rem;
-    color: #9699B0;
-    white-space: nowrap;
+.profile-container {
+    position: relative;
 }
 
 .profile-dropdown {
@@ -73,17 +43,36 @@
     border-radius: 10px;
     transition: .5s;
     right: 0;
+    text-align: center;
 }
 
-.profile-dropdown i {
-    padding-right: 5px;
+.profile-dropdown a {
+    margin: .5rem;
 }
 
-.profile-picture-container {
-    position: relative;
+.profile-dropdown a:hover {
+    opacity: .5;
 }
 
-.profile-picture-container:hover .profile-dropdown {
+.profile-name {
+    font-size: .8rem;
+    line-height: 1rem;
+    white-space: nowrap;
+}
+
+.profile-username {
+    font-size: .8rem;
+    margin-bottom: 50px;
+    line-height: 1rem;
+    color: #9699B0;
+    white-space: nowrap;
+}
+
+.profile-name:hover, .profile-username:hover {
+    text-decoration: underline;
+}
+
+.profile-container:hover .profile-dropdown {
     display: flex;
     flex-direction: column;
     animation: dropdown-animation 300ms ease-in-out forwards;
@@ -98,16 +87,19 @@
     }
 }
 
-.profile-dropdown a {
-    margin: 1rem;
-}
-
-.profile-dropdown a:hover {
-    opacity: .5;
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #38393b;
+    margin-top: 5px;
 }
 
 @media (max-width: 999px) {
     .mobile-menu {
         display: block;
+    }
+
+    .search-input {
+        display: none;
     }
 }

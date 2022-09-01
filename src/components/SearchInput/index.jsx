@@ -1,17 +1,18 @@
 import './style.css';
-import {useLocation} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
-const SearchInput = () => {
-    const isMobile = window.innerWidth <= 768;
-    const location = useLocation();
+export const SearchInput = () => {
+    const isDesktop = window.innerWidth >= 768;
 
     return (
-        <input
-            type="text"
-            className={`search-input ${(isMobile && location.href === "/search") && "search-input__mobile"}`}
-            placeholder="Pesquisar"
-        />
+        <div className="container">
+            <i className="uil uil-angle-left-b"></i>
+            <input
+                className="search-input"
+                placeholder="Procurar"
+            />
+
+            {isDesktop && <Navigate to="/" />}
+        </div>
     )
 }
-
-export default SearchInput;
