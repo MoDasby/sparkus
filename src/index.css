@@ -2,8 +2,13 @@
 
 :root {
     --bg-color: #000;
-    --secondary-color: #080F1F;
+    --primary-color: #9A6AFF;
+    --secondary-color: #1F2029;
     --default-font: 'Montserrat';
+}
+
+* {
+    font-family: var(--default-font);
 }
 
 body {
@@ -15,7 +20,7 @@ input {
     width: 250px;
     border: 1px solid var(--bg-color);
     border-radius: 5px;
-    background-color: #1F2029;
+    background-color: var(--secondary-color);
     color: #FFFFFF;
     font-family: var(--default-font);
 }
@@ -26,12 +31,35 @@ input:focus {
 
 input::placeholder {
     color: #B3B5C6;
-}
-
-input {
     padding-left: .5rem;
 }
 
 .pointer {
     cursor: pointer;
+}
+
+.profile-picture {
+    margin: 1rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: .8rem;
+    line-height: 1rem;
+    white-space: nowrap;
+}
+
+.profile-username {
+    font-size: .8rem;
+    margin-bottom: 50px;
+    line-height: 1rem;
+    color: #9699B0;
+    white-space: nowrap;
+}
+
+.profile-name:hover, .profile-username:hover {
+    text-decoration: underline;
 }

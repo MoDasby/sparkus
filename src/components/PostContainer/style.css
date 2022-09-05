@@ -1,0 +1,35 @@
+.post-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    background-color: var(--bg-color);
+    font-family: var(--default-font);
+    text-align: start;
+}
+
+.author-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+}
+
+.author-data h4 {
+    font-size: 1rem;
+}
+
+.icons-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icons-list i {
+    margin: 1rem;
+    cursor: pointer;
+}
