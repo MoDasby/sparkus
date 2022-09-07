@@ -1,13 +1,14 @@
 .navbar {
-    width: 100vw;
+    width: 100%;
     height: 10vh;
     background-color: var(--bg-color);
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    color: #FFFFFF;
     font-family: var(--default-font);
+    color: #FFFFFF;
+    position: sticky;
+    top: 0;
 }
 
 .navbar h2 {
@@ -20,14 +21,6 @@
     display: none;
 }
 
-.profile-container img {
-    margin: 1rem;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
 .profile-container {
     position: relative;
 }
@@ -35,7 +28,7 @@
 .profile-dropdown {
     display: none;
     position: absolute;
-    background-color: var(--bg-color);
+    background-color: var(--secondary-color);
     min-width: 160px;
     padding: 12px 16px;
     z-index: 1;
@@ -46,30 +39,16 @@
     text-align: center;
 }
 
+.profile-dropdown i {
+    margin-right: 5px;
+}
+
 .profile-dropdown a {
     margin: .5rem;
 }
 
 .profile-dropdown a:hover {
     opacity: .5;
-}
-
-.profile-name {
-    font-size: .8rem;
-    line-height: 1rem;
-    white-space: nowrap;
-}
-
-.profile-username {
-    font-size: .8rem;
-    margin-bottom: 50px;
-    line-height: 1rem;
-    color: #9699B0;
-    white-space: nowrap;
-}
-
-.profile-name:hover, .profile-username:hover {
-    text-decoration: underline;
 }
 
 .profile-container:hover .profile-dropdown {
@@ -95,11 +74,13 @@
 }
 
 @media (max-width: 999px) {
-    .mobile-menu {
-        display: block;
-    }
-
     .search-input {
         display: none;
     }
+
+    .glass {
+        background: transparent;
+        backdrop-filter: blur( 8px );
+    }
+
 }

@@ -1,11 +1,20 @@
 import './style.css';
 import {Link} from "react-router-dom";
 import {SearchInput} from "../SearchInput";
+import React, {RefObject} from "react";
 
 const Navbar = () => {
+    const navRef = React.useRef() as RefObject<HTMLObjectElement>;
+
+    window.onscroll = () => {
+        if (window.scrollY > 0) navRef.current?.classList.add("glass");
+        else {
+            if (navRef.current?.classList.contains("glass")) navRef.current?.classList.remove("glass");
+        }
+    }
 
     return (
-        <nav className="navbar">
+        <nav className="navbar" ref={navRef}>
 
             <Link to="/">
                 <h2>
