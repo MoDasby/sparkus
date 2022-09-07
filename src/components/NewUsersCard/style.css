@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.new-users-card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    background-color: var(--secondary-color);
+    font-family: var(--default-font);
+    color: #FFFFFF;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.new-users-card h1 {
+    font-weight: 900;
+    padding: 1rem;
+}
+
+@media (max-width: 500px) {
+    .new-users-card {
+        display: none;
+    }
+}
