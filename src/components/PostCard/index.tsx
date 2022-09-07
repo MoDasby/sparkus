@@ -52,7 +52,7 @@ export const Post = ({props}: { props: PostProps }) => {
 
             <div className="comments-area">
                 {
-                    props.comments.map(p => <Post props={p} />)
+                    props.comments.map((p, index) => <Post props={p} key={index} />)
                 }
             </div>
         </div>
