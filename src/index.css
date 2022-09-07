@@ -15,7 +15,7 @@ body {
     background-color: var(--bg-color);
 }
 
-input {
+input, textarea {
     height: 35px;
     width: 250px;
     border: 1px solid var(--bg-color);
@@ -25,11 +25,11 @@ input {
     font-family: var(--default-font);
 }
 
-input:focus {
+input:focus, textarea:focus {
     outline: none;
 }
 
-input::placeholder {
+input::placeholder textarea::placeholder {
     color: #B3B5C6;
     padding-left: .5rem;
 }
