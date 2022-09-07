@@ -4,9 +4,11 @@
     flex-direction: column;
     align-items: center;
     color: #FFFFFF;
-    background-color: var(--bg-color);
+    background-color: var(--secondary-color);
     font-family: var(--default-font);
     overflow: hidden;
+    margin-bottom: 1rem;
+    border-radius: 15px;
 }
 
 .post-container article {
