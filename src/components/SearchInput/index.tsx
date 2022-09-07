@@ -6,7 +6,7 @@ export const SearchInput = () => {
             <i className="uil uil-angle-left-b"></i>
             <input
                 className="search-input"
-                placeholder="Procurar"
+                placeholder="Pesquisar"
             />
         </div>
     )
