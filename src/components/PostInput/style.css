@@ -19,25 +19,6 @@
     border-radius: 10px;
 }
 
-.post-input-submit {
-    width: 100px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-    cursor: pointer;
-    transition: .2s;
-    outline: none;
-}
-
-button:focus {
-    outline: none;
-}
-
-.post-input-submit:hover {
-    opacity: .8;
-}
-
 @media (max-width: 499px) {
     .post-input {
         width: 300px;
