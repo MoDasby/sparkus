@@ -34,6 +34,38 @@ input::placeholder textarea::placeholder {
     padding-left: .5rem;
 }
 
+.btn {
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: .2s;
+    outline: none;
+    margin: 1rem;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    opacity: .8;
+}
+
+.btn__secondary {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.btn__secondary:hover {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
 .pointer {
     cursor: pointer;
 }
