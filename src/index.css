@@ -25,6 +25,10 @@ input, textarea {
     font-family: var(--default-font);
 }
 
+textarea {
+    resize: vertical;
+}
+
 input:focus, textarea:focus {
     outline: none;
 }

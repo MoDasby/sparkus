@@ -4,6 +4,10 @@ export const LoginForm = () => {
     return (
        <form className="login-form">
            <h2>
+               Sparkus
+           </h2>
+
+           <h2>
                Faça login ou crie uma conta
            </h2>
 

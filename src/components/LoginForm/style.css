@@ -15,6 +15,12 @@
     align-items: center;
 }
 
+.login-form h2:nth-child(1) {
+    font-size: 1.5rem;
+    padding: 1rem;
+    letter-spacing: 2px;
+}
+
 .btn-wrapper .btn {
     margin: 1rem;
 }
