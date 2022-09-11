@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-    --bg-color: #000;
+    --bg-color: rgb(18, 18, 20);
     --primary-color: #9A6AFF;
     --secondary-color: #1F2029;
     --default-font: 'Montserrat';
@@ -20,7 +20,7 @@ input, textarea {
     width: 250px;
     border: 1px solid var(--bg-color);
     border-radius: 5px;
-    background-color: var(--secondary-color);
+    background-color: var(--bg-color);
     color: #FFFFFF;
     font-family: var(--default-font);
 }
@@ -32,6 +32,10 @@ input:focus, textarea:focus {
 input::placeholder textarea::placeholder {
     color: #B3B5C6;
     padding-left: .5rem;
+}
+
+.warning {
+    color: #CC2937;
 }
 
 .btn {
@@ -56,7 +60,7 @@ input::placeholder textarea::placeholder {
 }
 
 .btn__secondary {
-    background-color: var(--bg-color);
+    background-color: transparent;
     color: var(--primary-color);
     margin: 0;
 }

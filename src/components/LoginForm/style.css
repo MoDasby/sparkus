@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.login-form {
+    color: #FFFFFF;
+    width: 100%;
+    font-family: var(--default-font);
+    letter-spacing: 1px;
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 1rem;
+    border-radius: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-wrapper .btn {
+    margin: 1rem;
+}
+
+.form-input {
+    height: 40px;
+    width: 250px;
+    padding-left: 1rem;
+    margin: 1rem;
+}

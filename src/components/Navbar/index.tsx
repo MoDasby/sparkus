@@ -55,7 +55,7 @@ const Navbar = () => {
 
                     <div className="divider"></div>
 
-                    <a className="pointer">
+                    <a className="pointer warning">
                         <i className="uil uil-signout"></i>
                         Sair
                     </a>

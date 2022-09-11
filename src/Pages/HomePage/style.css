@@ -1,0 +1,15 @@
+.wrapper {
+    width: 100%;
+    display: grid;
+    place-items: start;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 500px) {
+    .wrapper {
+        place-content: center;
+        place-items: center;
+        grid-template-columns: 80%;
+    }
+}
