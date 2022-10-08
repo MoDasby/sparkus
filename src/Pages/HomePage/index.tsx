@@ -1,100 +1,77 @@
 import Navbar from "../../components/Navbar";
 import {Feed} from "../../components/Feed";
-import {PostProps} from "../../components/PostCard";
 import './style.css'
-import {NewUsersCard, UserProps} from "../../components/NewUsersCard";
+import {UsersCard} from "../../components/UsersCard";
+import {useEffect, useState} from "react";
+import { api } from "../../service/api";
+import {FeedProps} from "../../types/feed";
+import {toast} from "react-toastify";
+import {Toast} from "../../components/Toast";
+import {useAuth} from "../../context/auth";
+import {useNavigate} from "react-router-dom";
+import {Loading} from "../../components/Loading";
+
 
 const Home = () => {
-    const mock: PostProps[] = [{
-        post_author: null,
-        text: "só testando auyi",
-        likes: 28,
-        comments: [{
-            post_author: "dddddd",
-                text: "muito bom esse teste ai em",
-                likes: 12,
-                author_username: "partigiano13",
-                author_name: "edson roba brisa",
-                author_icon_path: "https://s2.glbimg.com/bEn7rw3T_6w7zue426runnkaIL4=/0x0:1300x867/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2021/8/N/lG0onERkiwxcA4XvHZFQ/kombimuseu.jpg",
-                comments: [{
-                    text: "muito bom esse teste ai em",
-                    likes: 12,
-                    author_username: "partigiano13",
-                    author_name: "edson roba brisa",
-                    author_icon_path: "https://s2.glbimg.com/bEn7rw3T_6w7zue426runnkaIL4=/0x0:1300x867/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2021/8/N/lG0onERkiwxcA4XvHZFQ/kombimuseu.jpg",
-                    comments: [],
-                    post_author: "modasby"
-            }]
-        }],
-        author_username: "modasby",
-        author_name: "jose de loures",
-        author_icon_path: "https://cdn.pocket-lint.com/r/s/1200x630/assets/images/162179-tv-news-feature-rick-and-morty-season-6-release-date-trailer-and-how-to-watch-image1-kbmgzwpsy5.jpg"
 
-    },
-        {
-            author_name: "marcos pereirinha",
-            post_author: null,
-            author_username: "pereirinhaaa",
-            author_icon_path: "https://www.folhavitoria.com.br/entretenimento/blogs/du-ponto-de-vista-masculino/wp-content/uploads/2015/11/careca-800x500.jpg",
-            text: "ih rapaz aqui digo eu que estou postando esse post",
-            likes: 4508,
-            comments: [
-                {
-                    author_name: "kylia",
-                    post_author: "pereirinhaaa",
-                    author_username: "kkkkkkilye",
-                    author_icon_path: "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt4391552e15799700/6277ab4a0dc666597b5eb70c/mbappe.jpg?auto=webp&format=jpg&quality=100",
-                    text: "ih rapaz aqui digo eu que estou respondendo ah esse post",
-                    likes: 58,
-                    comments: []
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [feed, setFeed] = useState<FeedProps>({posts: [], newUsers: []});
+    const authContext = useAuth();
+    const navigate = useNavigate();
+
+    const notifyError = () => {
+        toast.error("ocorreu um erro ao carregar o seu feed", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark"
+        })
+    }
+
+    useEffect(() => {
+        const getFeed = () => {
+            api.get<FeedProps>('/feed', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("@App:token")}`
                 }
-            ]
-        },
-        {
-            author_name: "marcos pereirinha",
-            post_author: null,
-            author_username: "pereirinhaaa",
-            author_icon_path: "https://www.folhavitoria.com.br/entretenimento/blogs/du-ponto-de-vista-masculino/wp-content/uploads/2015/11/careca-800x500.jpg",
-            text: "ih rapaz aqui digo eu que estou postando esse post",
-            likes: 4508,
-            comments: []
-        },
-        {
-            author_name: "marcos pereirinha",
-            post_author: null,
-            author_username: "pereirinhaaa",
-            author_icon_path: "https://www.folhavitoria.com.br/entretenimento/blogs/du-ponto-de-vista-masculino/wp-content/uploads/2015/11/careca-800x500.jpg",
-            text: "ih rapaz aqui digo eu que estou postando esse post",
-            likes: 4508,
-            comments: []
-        },
-    ]
-
-    const mockToNewUsers: UserProps[] = [
-        {
-            name: "Roberto",
-            username: "robereeet",
-            icon_path: "https://media.gazetadopovo.com.br/viver-bem/2017/02/selfie-perfeita-5518fdd0.jpg"
-        },
-        {
-            name: "Marcela",
-            username: "marceeela",
-            icon_path: "https://veja.abril.com.br/wp-content/uploads/2018/03/selfie0mulher-20150128-0007.jpg"
+            }).then((res) => {
+                setFeed(res.data);
+                setIsLoading(false);
+            }).catch((err) => {
+                if (err.response.status === 401) {
+                    authContext.Logout();
+                    navigate('/login');
+                }
+                notifyError();
+            })
         }
-    ]
+        
+        if (isLoading && authContext.isAuthenticated()) {
+            getFeed();
+        } else if (!authContext.isAuthenticated()) {
+            navigate("/login");
+        }
+    }, []);
 
-    return (
+    return isLoading === true ? <div style={{height: "100vh"}}><Toast /><Loading /></div> : (
         <>
+            <Toast />
+
             <Navbar />
 
             <div className="wrapper">
                 <div>
-                    <NewUsersCard users={mockToNewUsers} />
+                    <UsersCard users={feed.newUsers}/>
                 </div>
 
                 <div>
-                    <Feed props={mock} />
+                    <Feed props={feed} />
                 </div>
+                
             </div>
         </>
     )

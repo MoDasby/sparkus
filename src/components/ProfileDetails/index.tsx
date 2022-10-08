@@ -1,40 +1,24 @@
-import { UserProps } from "../NewUsersCard";
 import './style.css';
-import {Post, PostProps} from "../PostCard";
+import { Post } from "../PostCard";
+import {UserDetails} from "../../types/userDetails";
 
-
-export const ProfileDetails = () => {
-    const user: UserProps = {
-        name: "Modasby",
-        username: "modasby",
-        icon_path: "https://veja.abril.com.br/wp-content/uploads/2018/03/selfie0mulher-20150128-0007.jpg"
-    }
-
-    const postsMock: PostProps[] = [{
-        post_author: null,
-        author_name: "Modasby",
-        author_username: "modasby",
-        author_icon_path: "https://veja.abril.com.br/wp-content/uploads/2018/03/selfie0mulher-20150128-0007.jpg",
-        text: "Só testando aqui mesmo parsa",
-        likes: 24,
-        comments: []
-    }]
+export const ProfileDetails = ({ data } : { data: UserDetails }) => {
 
     return (
         <div className="profile-details">
             <header className="user-data-container">
                 <img
-                    src={user.icon_path}
+                    src={data.icon_path}
                     className="user-picture"
                     alt="foto do perfil"
                 />
 
                 <div className="author-data">
-                    <h3 className="name pointer">{user.name}</h3>
-                    <small className="username pointer">{`@${user.username}`}</small>
+                    <h3 className="name pointer">{data.name}</h3>
+                    <small className="username pointer">{`@${data.username}`}</small>
                 </div>
 
-                <button
+                {/*<button
                     className="btn"
                     type="submit"
                     onClick={(e) => e.preventDefault()}
@@ -46,14 +30,14 @@ export const ProfileDetails = () => {
                     className="btn btn__secondary"
                 >
                     Editar Perfil
-                </button>
+    </button>*/}
             </header>
 
             <div className="post-wrapper">
                 <h2>Posts</h2>
 
                 {
-                    postsMock.map(p => <Post props={p} />)
+                    data.posts.map((p, index) => <Post key={index} props={p} />)
                 }
             </div>
         </div>

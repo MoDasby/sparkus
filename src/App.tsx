@@ -1,8 +1,11 @@
-import {Router} from "./Router"
+import {AuthProvider} from "./context/auth";
+import {Router} from "./routes";
 
 const App = () => {
   return (
+    <AuthProvider>
       <Router />
+    </AuthProvider>
   )
 }
 

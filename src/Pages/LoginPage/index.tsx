@@ -1,12 +1,12 @@
 import {LoginForm} from "../../components/LoginForm";
-import Navbar from "../../components/Navbar";
 import './style.css';
-import React from "react";
+import {Toast} from "../../components/Toast";
 
 export const LoginPage = () => {
     return (
         <>
             <div className="login-wrapper">
+                <Toast />
                 <LoginForm />
             </div>
         </>

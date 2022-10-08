@@ -1,9 +1,17 @@
 import './style.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {SearchInput} from "../SearchInput";
 import React, {RefObject} from "react";
+import {UserProps} from "../../types/user";
+import {useAuth} from "../../context/auth";
 
 const Navbar = () => {
+
+    const user = JSON.parse(localStorage.getItem("@App:user") || "{}") as UserProps;
+    const navigate = useNavigate();
+
+    const authContext = useAuth();
+
     const navRef = React.useRef() as RefObject<HTMLObjectElement>;
 
     window.onscroll = () => {
@@ -11,6 +19,11 @@ const Navbar = () => {
         else {
             if (navRef.current?.classList.contains("glass")) navRef.current?.classList.remove("glass");
         }
+    }
+
+    const handleLogout = () => {
+        authContext.Logout();
+        navigate("/login");
     }
 
     return (
@@ -30,7 +43,7 @@ const Navbar = () => {
 
             <div className="profile-container">
                 <img
-                    src="https://cdn.pocket-lint.com/r/s/1200x630/assets/images/162179-tv-news-feature-rick-and-morty-season-6-release-date-trailer-and-how-to-watch-image1-kbmgzwpsy5.jpg"
+                    src={user.icon_path}
                     className="profile-picture pointer"
                     alt="foto do perfil"
                 />
@@ -38,27 +51,27 @@ const Navbar = () => {
                 <div className="profile-dropdown">
                     <div>
                         <p className="profile-name pointer">
-                            Giulliano Mendes Souto
+                            {user.name}
                         </p>
 
                         <small className="profile-username pointer">
-                            @modassssby
+                            { `@${user.username}` }
                         </small>
 
                         <div className="divider"></div>
                     </div>
 
-                    <a className="pointer">
+                    <a className="pointer" href={`${document.dir}/${user.username}`}>
                         <i className="uil uil-user"></i>
                         Meu Perfil
                     </a>
 
                     <div className="divider"></div>
 
-                    <a className="pointer warning">
+                    <button className="pointer warning logout" onClick={handleLogout}>
                         <i className="uil uil-signout"></i>
                         Sair
-                    </a>
+                    </button>
                 </div>
             </div>
         </nav>

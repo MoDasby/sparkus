@@ -57,6 +57,10 @@
     color: #71767BFF
 }
 
+.like__active {
+    color: #CC2937;
+}
+
 @media (max-width: 999px) {
     .post-container {
         width: 100%;

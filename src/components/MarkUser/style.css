@@ -1,7 +1,0 @@
-.mark {
-    color: var(--primary-color);
-}
-
-.mark:hover {
-    text-decoration: underline;
-}
