@@ -1,11 +1,13 @@
 import {createContext, ReactNode, useContext, useEffect, useState} from "react";
 import {api} from "../service/api";
 import {UserProps} from "../types/user";
+import { UserData } from "../types/userData";
 
 interface AuthContextData {
     isAuthenticated(): boolean,
     user: UserProps | null,
-    Login (credential: string, password: string, loginError: (message: string) => void, redirectToLogin: () => void): void,
+    Login (credential: string, password: string, loginError: (message: string) => void, redirectToHome: () => void): void,
+    Signup (userData: UserData, signupError: (message: string) => void, redirectToHome: () => void): void,
     Logout(): void,
 }
 
@@ -37,18 +39,31 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
         }
     }, []);
 
-    const Login = (credential: string, password: string, loginError: (message: string) => void, redirectToLogin: () => void) => {
+    const Login = (credential: string, password: string, loginError: (message: string) => void, redirectToHome: () => void) => {
         api.post<AuthResponse>("/auth", {
             credential, password
         }).then(response => {
+
+            if (response.data.user.icon_path === null || response.data.user.icon_path === "") {
+                response.data.user.icon_path = `${document.dir}/default-avatar.jpg`;
+            }
             localStorage.setItem('@App:user', JSON.stringify(response.data.user));
             localStorage.setItem('@App:token', response.data.token);
 
             setUser(response.data.user);
-            redirectToLogin();
+            redirectToHome();
         }).catch(err => {
             loginError(err.response.data.description);
         })
+    }
+
+    const Signup = (userData: UserData, loginError: (message: string) => void, redirectToHome: () => void) => {
+        console.log(userData);
+        api.post<UserProps>("/auth/signup", userData).then(() => {
+            Login(userData.username, userData.password, loginError, redirectToHome);
+        }).catch(err => {
+            loginError(err.response.data.description);
+        });
     }
 
     const Logout = () => {
@@ -64,7 +79,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, Login, Logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, Login, Logout, Signup}}>
             {children}
         </AuthContext.Provider>
     )

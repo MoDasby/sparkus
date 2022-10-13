@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-.login-form {
+.form {
     color: #FFFFFF;
     width: 100%;
     font-family: var(--default-font);
     letter-spacing: 1px;
     background-color: var(--secondary-color);
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 1rem 0;
     border-radius: 20px;
     height: 100%;
     display: flex;
@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.login-form h2:nth-child(1) {
+.form h2:nth-child(1) {
     font-size: 1.5rem;
     padding: 1rem;
     letter-spacing: 2px;

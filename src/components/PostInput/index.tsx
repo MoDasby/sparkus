@@ -25,8 +25,7 @@ export const PostInput = () => {
 
         const reqBody = {
             "text": postText,
-            "likes": 0,
-            "author_username": "modasby"
+            "likes": 0
         }
 
         api.post("/feed/post", reqBody, {

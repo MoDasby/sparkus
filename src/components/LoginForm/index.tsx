@@ -8,6 +8,7 @@ export const LoginForm = () => {
 
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
+
     const authContext = useAuth();
     const navigate = useNavigate();
 
@@ -44,7 +45,7 @@ export const LoginForm = () => {
     }
 
     return (
-       <form className="login-form">
+       <form className="form">
            <h2>
                Sparkus
            </h2>
@@ -67,7 +68,7 @@ export const LoginForm = () => {
                value={password}
            />
            <div className="btn-wrapper">
-               <button className="btn btn__secondary" >Criar Conta</button>
+               <button className="btn btn__secondary" onClick={() => {navigate("/signup")}}>Criar Conta</button>
                <button type="submit" className="btn" onClick={handleLoginRequest}>Entrar</button>
            </div>
 

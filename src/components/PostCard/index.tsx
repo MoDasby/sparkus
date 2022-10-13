@@ -76,12 +76,6 @@ export const Post = ({props}: { props: PostProps }) => {
                 <p className="post-text">{props.text}</p>
             </article>
 
-            <ul className="interactions-list">
-                <li className="interactions-item" onClick={handleLikeClick}>
-                    <i className="uil uil-heart-sign" ref={heartRef}></i>
-                    {likesCount}
-                </li>
-            </ul>
         </div>
     )
 }

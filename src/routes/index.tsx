@@ -3,7 +3,7 @@ import Home from "../Pages/HomePage";
 import Search from "../Pages/SearchPage";
 import {ProfileDetailsPage} from "../Pages/ProfileDetailsPage";
 import {LoginPage} from "../Pages/LoginPage";
-import React from "react";
+import { SignupPage } from "../Pages/SignupPage";
 
 export const Router = () => {
     return (
@@ -13,7 +13,7 @@ export const Router = () => {
                 <Route path="/search" element={ <Search /> } />
                 <Route path="/:username" element={ <ProfileDetailsPage /> } />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
             </Routes>
         </BrowserRouter>
     )

@@ -1,0 +1,67 @@
+input[type=email]:invalid {
+    border: 1px solid red;
+}
+
+.form-input__picture {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    color: #B3B5C6;
+    font-size: .8rem;
+}
+
+.picture i {
+    display: none;
+}
+
+.picture:hover i {
+    display: block;
+}
+
+.form-input__picture img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 1rem;
+    font-size: 1rem;
+    background-color: var(--bg-color);
+    display: grid;
+    place-items: center;
+    place-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.picture div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #38393b;
+    opacity: 50%;
+    font-size: 2rem;
+    display: grid;
+    place-items: center;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 999px) {
+    .form-control {
+        flex-direction: column;
+    }
+
+    .picture i {
+        display: block;
+    }
+}
