@@ -45,7 +45,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
         }).then(response => {
 
             if (response.data.user.icon_path === null || response.data.user.icon_path === "") {
-                response.data.user.icon_path = `${document.dir}/default-avatar.jpg`;
+                response.data.user.icon_path = `${window.location.host}/default-avatar.jpg`;
             }
             localStorage.setItem('@App:user', JSON.stringify(response.data.user));
             localStorage.setItem('@App:token', response.data.token);

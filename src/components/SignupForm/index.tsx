@@ -8,24 +8,23 @@ import './style.css'
 
 export const SignupForm = () => {
 
-    const [userData, setUserData] = useState<UserData>({
-        username: '',
-        name: '',
-        icon_path: '',
-        email: '',
-        password: ''
-        });
+    const [name, setName] = useState<string>("");
+    const [username, setUsername] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    let iconPath = `https://avatars.dicebear.com/api/avataaars/${username}.svg`;
+
     const authContext = useAuth();
     const navigate = useNavigate();
-    const [icon_path, setIconPath] = useState<string>(`${document.dir}/default-avatar.jpg`);
+    const [provisoryIconPath, setProvisoryIconPath] = useState<string>(`/default-avatar.jpg`);
     const [imageFile, setImageFile] = useState<File>();
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleSignupRequest: MouseEventHandler<HTMLButtonElement> = (e) => {
+    const handleSignupRequest: MouseEventHandler<HTMLButtonElement> = async (e) => {
         e.preventDefault();
 
-        if (userData.username.length === 0 || userData.name.length === 0 || userData.email.length === 0 || userData.password.length === 0) {
+        if (username.length === 0 || name.length === 0 || email.length === 0 || password.length === 0) {
             toast.error("Preencha todos os campos!", {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -44,26 +43,21 @@ export const SignupForm = () => {
             const formData = new FormData();
             formData.append('file', imageFile);
 
-            api.post("/image/upload", formData, {
+            const res = await api.post("/image/upload", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then((response) => {
-                const { data } = response;
-                setIconPath(data.path);
-                console.log("iconPath: ", icon_path)
-            }).catch((error) => {
-                console.log(error);
             });
-            
+
+            iconPath = res.data.path;
         }
 
         authContext.Signup({
-            username: userData.username,
-            name: userData.name,
-            icon_path: icon_path,
-            email: userData.email,
-            password: userData.password
+            name: name,
+            username: username,
+            email: email,
+            password: password,
+            icon_path: iconPath
         }, (message: string) => {
             toast.error(`${message}`, {
                 position: "bottom-right",
@@ -75,7 +69,8 @@ export const SignupForm = () => {
                 progress: undefined,
                 theme: "dark"
             });
-    }, () => {navigate("/")})};
+        }, () => {navigate("/")})
+};
 
     const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         e.preventDefault();
@@ -84,7 +79,7 @@ export const SignupForm = () => {
 
         if (image) {
             setImageFile(image);
-            setIconPath(URL.createObjectURL(image));
+            setProvisoryIconPath(URL.createObjectURL(image));
 
         }
     }
@@ -101,7 +96,7 @@ export const SignupForm = () => {
 
             <div className="form-input__picture">
                 <div className="picture" onClick={() => inputRef.current?.click()}>
-                    <img src={icon_path} className="profile-picture" alt='adicione uma foto de perfil' />
+                    <img src={provisoryIconPath} className="profile-picture" alt='adicione uma foto de perfil' />
                     <div>
                         <i className="uil uil-image-plus"></i>
                     </div>
@@ -120,15 +115,15 @@ export const SignupForm = () => {
                <input
                    placeholder="Nome de usuário"
                    className="form-input"
-                   onChange={e => setUserData({...userData, username: e.target.value})}
-                   value={userData.username}
+                   onChange={e => setUsername(e.target.value.trim())}
+                   value={username}
                />
 
                <input
                    placeholder="Nome"
                    className="form-input"
-                   onChange={e => setUserData({...userData, name: e.target.value})}
-                   value={userData.name}
+                   onChange={e => setName(e.target.value)}
+                   value={name}
                />
            </div>
            
@@ -136,16 +131,16 @@ export const SignupForm = () => {
                <input
                    placeholder="Email"
                    className="form-input"
-                   onChange={e => setUserData({...userData, email: e.target.value})}
-                   value={userData.email}
+                   onChange={e => setEmail(e.target.value)}
+                   value={email}
                    type="email"
                />
 
                <input
                    placeholder="Senha"
                    className="form-input"
-                   onChange={e => setUserData({...userData, password: e.target.value})}
-                   value={userData.password}
+                   onChange={e => setPassword(e.target.value)}
+                   value={password}
                />
            </div>
 
