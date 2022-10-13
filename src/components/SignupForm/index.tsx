@@ -12,7 +12,7 @@ export const SignupForm = () => {
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    let iconPath = `https://avatars.dicebear.com/api/avataaars/${username}.svg`;
+    let iconPath = `https://avatars.dicebear.com/api/identicon/${username}.svg`;
 
     const authContext = useAuth();
     const navigate = useNavigate();
