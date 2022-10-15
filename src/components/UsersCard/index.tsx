@@ -49,7 +49,7 @@ export const UserCard = (props: UsersCardProps) => {
             <div className="author-data" onClick={() => {
                 if (isFromSearch) addToRecent();
             }} >
-                <Link to={`/${user.username}`}>
+                <Link to={`/user/${user.username}`}>
                     <h4 className="profile-name pointer">{user.name}</h4>
                     <small className="profile-username pointer">{`@${user.username}`}</small>
                 </Link>

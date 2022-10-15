@@ -61,7 +61,7 @@ const Navbar = () => {
                         <div className="divider"></div>
                     </div>
 
-                    <a className="pointer" href={`${document.dir}/${user.username}`}>
+                    <a className="pointer" href={`/user/${user.username}`}>
                         <i className="uil uil-user"></i>
                         Meu Perfil
                     </a>

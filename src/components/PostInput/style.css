@@ -27,6 +27,12 @@
     }
 }
 
+@media (max-width: 399px) {
+    .post-input {
+        width: 250px;
+    }
+}
+
 @media (max-width: 320px) {
     .post-input {
         width: 200px;

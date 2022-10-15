@@ -5,11 +5,14 @@ import {api} from "../../service/api";
 import {toast} from "react-toastify";
 import {Toast} from "../../components/Toast";
 import {UserDetails} from "../../types/userDetails";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { Loading } from "../../components/Loading";
+import { useAuth } from "../../context/auth";
 
 export const ProfileDetailsPage = () => {
     const { username } = useParams();
+    const authContext = useAuth();
+    const navigate = useNavigate();
 
     const [data, setData] = useState<UserDetails>({
         username: "",
@@ -27,8 +30,13 @@ export const ProfileDetailsPage = () => {
                     }
                 }).then((res) => {
                 setData(res.data);
-            }).catch((e) => {
-                toast.error(`Ocorreu um erro ao carregar,\n\n${e.response.data.description}`, {
+            }).catch((err) => {
+                if (err.response.status === 401) {
+                    authContext.Logout();
+                    navigate('/login');
+                }
+
+                toast.error(`Ocorreu um erro ao carregar,\n\n${err.response.data.description}`, {
                     position: "bottom-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -41,9 +49,11 @@ export const ProfileDetailsPage = () => {
             })
         }
 
-        if (isLoading) {
+        if (isLoading && authContext.isAuthenticated()) {
             getData();
             setIsLoading(false);
+        } else if (!authContext.isAuthenticated()) {
+            navigate("/login");
         }
     }, [data, isLoading])
 

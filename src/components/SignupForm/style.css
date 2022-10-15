@@ -1,4 +1,4 @@
-input[type=email]:invalid {
+.form-input:invalid {
     border: 1px solid red;
 }
 

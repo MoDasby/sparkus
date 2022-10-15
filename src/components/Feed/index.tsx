@@ -11,9 +11,11 @@ export const Feed = ({ props }: { props: FeedProps }) => {
 
             <h1 className="feed-title">Seu Feed</h1>
 
-            {
-                props.posts.map((p, index) => (<Post props={getPostProp(p)} key={index} />))
-            }
+            <div className="feed-posts-wrapper">
+                {
+                    props.posts.map((p, index) => (<Post props={getPostProp(p)} key={index} />))
+                }
+            </div>
         </>
     )
 }

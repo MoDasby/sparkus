@@ -39,6 +39,20 @@ export const SignupForm = () => {
             return;
         }
 
+        if (!validateEmail(email)) {
+            toast.error("Email inválido!", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark"
+            })
+            return;
+        }
+
         if (imageFile) {
             const formData = new FormData();
             formData.append('file', imageFile);
@@ -134,6 +148,7 @@ export const SignupForm = () => {
                    onChange={e => setEmail(e.target.value)}
                    value={email}
                    type="email"
+                   pattern='/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
                />
 
                <input
@@ -151,3 +166,11 @@ export const SignupForm = () => {
         </form>
     )
 }
+
+const validateEmail = (email: string) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };

@@ -8,3 +8,11 @@
     font-family: var(--default-font);
     letter-spacing: 2px;
 }
+
+.feed-posts-wrapper {
+    width: 100%;
+    display: grid;
+    place-items: start;
+    place-content: center;
+    grid-template-columns: 1fr;
+}

@@ -3,6 +3,7 @@ import { Post } from "../PostCard";
 import {UserDetails} from "../../types/userDetails";
 
 export const ProfileDetails = ({ data } : { data: UserDetails }) => {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     return (
         <div className="profile-details">
@@ -24,13 +25,16 @@ export const ProfileDetails = ({ data } : { data: UserDetails }) => {
                     onClick={(e) => e.preventDefault()}
                 >
                     Seguir
-                </button>
+                </button>*/}
 
-                <button
-                    className="btn btn__secondary"
-                >
-                    Editar Perfil
-    </button>*/}
+                {
+                    user.username === data.username &&
+                    <button
+                        className="btn btn__secondary"
+                    >
+                        Editar Perfil
+                    </button>
+                }
             </header>
 
             <div className="post-wrapper">
