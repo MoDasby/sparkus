@@ -2,7 +2,8 @@
 
 :root {
     --bg-color: rgb(18, 18, 20);
-    --primary-color: #9A6AFF;
+    /*--primary-color: #9A6AFF;*/
+    --primary-color: #A8E890;
     --secondary-color: #1F2029;
     --default-font: 'Montserrat';
 }
